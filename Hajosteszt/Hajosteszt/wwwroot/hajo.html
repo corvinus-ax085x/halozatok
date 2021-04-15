@@ -2,29 +2,32 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="hajo.css" rel="stylesheet">
+    <link rel="stylesheet" href="hajo.css">
 </head>
 <body>
     <div id="külső">
-        <div id="kérdésszövege">
+        <div id="kérdés_szöveg">
             Kérdés szövege
         </div>
+
         <div id="középső">
             <div id="válaszok">
-                <div id="válasz1" class="kerdes kattintható">Válasz1</div>
-                <div id="válasz2" class="kerdes kattintható jó">Válasz2</div>
-                <div id="válasz3" class="kerdes kattintható rossz">Válasz3</div>
+                <div id="válasz1" onclick="szinez(válasz1)" class="kerdes kattintható">Válasz 1</div>
+                <div id="válasz2" onclick="szinez(válasz2)" class="kerdes kattintható ">Válasz 2</div>
+                <div id="válasz3" onclick="szinez(válasz3)" class="kerdes kattintható ">Válasz 3</div>
             </div>
             <div id="kép">
                 <img id="kép1" src="https://szoft1.comeback.hu/hajo/teszt-0050.jpg" />
             </div>
         </div>
         <div id="vezérlő">
-            <div class="gomb kattintható">Vissza</div>
-            <div class="gomb kattintható">Előre</div>
+            <div onclick="vissza()" class="gomb kattintható">Vissza</div>
+            <div onclick="elore()" class="gomb kattintható">Előre</div>
         </div>
     </div>
-
+    <div id="ide"></div>
+    <script src="hetedik.js"></script>
 </body>
 </html>
