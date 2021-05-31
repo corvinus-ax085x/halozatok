@@ -2,32 +2,21 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>document</title>
+    <title></title>
 </head>
 <body>
-    <form>
+    <form action="/" method="post">
         <div id="jokeList"></div>
         <div>
             <input id="jokeText" type="text" placeholder="Csak PC vicc" />
         </div>
         <button id="addButton">Új vicc felvétele</button>
     </form>
-    <button onclick="kerdesekLetoltese()">Kérdések betöltése</button>
     <script>
-        let összesKerdes = [];
-        const jokeList = document.getElementById("jokeList");
         document.getElementById("addButton").addEventListener("click", () => {
-
-            //Ezt az objektumot fogjuk átküldeni
             let data = {
-                jokeText: document.getElementById("jokeText").value
+                text: document.getElementById("jokeText").value
             }
-            if (!data.jokeText) {
-                return;
-            }
-
 
             fetch("api/jokes",
                 {
@@ -36,56 +25,15 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)
-                }).then(x => {
-                    if (x.ok) {
-                        alert("Siker");
-
-                    }
-                    else {
-                        alert("Kudarc");
-                    }
-                });
-
-
-
+                }
+            ).then(x => {
+                if (x.ok) {
+                    alert("Siker!");
+                } else {
+                    alert("Kudarc!");
+                }
+            });
         });
-        function kerdesekLetoltese() {
-            fetch(`api/jokes`)
-                .then(response => {
-                    if (!response.ok) {
-                        console.error(`Hibás válasz: ${response.status}`)
-                    }
-                    else {
-                        return response.json()
-                    }
-                }).then(data => {
-                    összesKerdes = data;
-                    if (összesKerdes) {
-                        KerdesekMegjelenitese(összesKerdes);
-                    }
-                    console.log(összesKerdes);
-                });
-        };
-        function KerdesekMegjelenitese(megjelenitendoKerdesek) {
-            jokeList.innerHTML = "";
-            megjelenitendoKerdesek
-                .filter(kerdes => kerdes.jokeText)
-                .forEach((szurtKerdes, index) => {
-                    const newDiv = document.createElement("div");
-                    const newDiv2 = document.createElement("div");
-                    const newDiv3 = document.createElement("div");
-                    newDiv.style.margin = "2rem";
-                    newDiv.appendChild(newDiv2);
-                    newDiv.appendChild(newDiv3);
-                    newDiv2.textContent = index;
-                    newDiv3.textContent = szurtKerdes.jokeText;
-
-                    jokeList.appendChild(newDiv);
-                });
-        }
-
-       
     </script>
-
 </body>
 </html>

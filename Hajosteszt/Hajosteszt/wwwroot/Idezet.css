@@ -1,0 +1,22 @@
+﻿* {
+    box-sizing: border-box;
+
+}
+
+body {
+    background-color: antiquewhite;
+
+}
+
+#cim {
+    border: 2px groove black;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#idezetList {
+    text-align: left;
+    font-weight:bold;
+    background-color: burlywood;
+    font-style: italic;
+}
